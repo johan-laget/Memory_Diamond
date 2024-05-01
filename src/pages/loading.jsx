@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import '../assets/loading.css';
 
@@ -44,13 +45,12 @@ const Loading = () => {
           <div className='video'>
             <video src={`public/video/tuto1.mp4`} loop autoPlay muted className='video'></video>
           </div>
-          <div className='title__commentaire'>Commentaire</div>
         </div>
         <div className='Progresse__barre'>
           <div className='progress-bar' style={{ width: `${progress}%` }}>{Math.round(progress)}%</div>
         </div>
-        {showButton && <div id='BoutonMusic' className='bouton__play'>Continuer</div>}
       </div>
+        {showButton && <div id='BoutonMusic' className='bouton__play'>Continuer</div>}
     </div>
   );
 };

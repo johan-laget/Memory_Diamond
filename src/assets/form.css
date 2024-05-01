@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+body {
+  font-family: "Silkscreen", sans-serif;
+  font-style: normal;
+}
+  /* App.css */
+  .form {
+    background-color: #333;
+    height: 25rem;
+    width: 20%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s ease;
+    animation: change-shadow 3s infinite alternate;
+    padding: 15px;
+    border-radius: 20px;
+  }
+  .container__form__login {
+    background-color: #333;
+    height: 25rem;
+    width: 15rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s ease;
+    animation: change-shadow 3s infinite alternate;
+    padding: 15px;
+    border-radius: 20px;
+  }
+  @keyframes change-shadow {
+    0% {
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+      box-shadow: 8px 8px 80px rgb(255, 0, 0);
+    }
+    100% {
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  .form ul {
+    list-style-type: none;
+    margin: 1rem;
+    padding: 0;
+    display: grid;
+    justify-content: center;
+  }
+  
+  .imput__li{
+    display: inline;
+    background: #502121;
+    padding: 15px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px rgb(0 0 0);
+  }
+  
+  .button__form:hover{
+    transform: scale(1.1);
+  }
+
+  .imput__form:hover{
+    transform: scale(1.1);
+  }
+  
+  .form ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .title__form {
+    font-size: 25px;
+    margin: auto;
+    margin-bottom: 27px;
+    background: #1a2025e6;
+    padding: 6px;
+    box-shadow: 4px 4px 8px rgb(0 0 0);
+    text-align: center;
+    }
+  .form.home {
+    margin-top: -80px;
+  }
+
+  .form_title {
+    font-size: 40px;
+    background: #171c20e6;
+    padding: 15px;
+    text-align: center;
+    margin-right: 17rem;
+    margin-left: 17rem;
+    margin-bottom: 5rem;
+    margin-top: 0rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s ease;
+    animation: change-home 3s infinite alternate;
+  }
+  @keyframes change-home {
+    0% {
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+      box-shadow: 8px 8px 80px rgb(17, 18, 101);
+    }
+    100% {
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .form__container{
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    justify-content: center;
+  }
+
+  input[type="pseudo__form" i] {
+    background: aliceblue;
+    border: 4px solid black;
+    padding: 7px;
+    font-weight: bold;
+    color: black;
+  }
+
+  input[type="password__form" i] {
+    background: aliceblue;
+    border: 4px solid black;
+    padding: 7px;
+    font-weight: bold;
+    color: black;
+  }
+  input[type="email__form" i] {
+    background: aliceblue;
+    border: 4px solid black;
+    padding: 7px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .settings-button{
+    margin-top: 45px;
+  }
+
+  .button__form{
+    display: inline;
+    margin: 5px;
+    padding: 15px;
+    cursor: pointer;
+  }

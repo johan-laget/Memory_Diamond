@@ -1,14 +1,20 @@
-import Menu from './components/menu';
-import Loading from './components/loading';
 import './App.css';
 import {RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Loading from './pages/loading';
+import Form from './pages/form';
+import Menu from './pages/menu';
 
 function App() {
 
   const router = createBrowserRouter ([
-    {path: '/',element: <Loading />,},
-
+    
     {path: '/',element: <Menu />,},
+
+    {path: 'loading',element: <Loading />,},
+
+    {path: 'form',element: <Form />,},
+
+
     
   ])
 

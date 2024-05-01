@@ -2,10 +2,11 @@
   padding: 0px;
 }
 .loading_menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  margin-top: 40px;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
   }
   
   .loading__container {
@@ -19,6 +20,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+
   }
   
   .video {
