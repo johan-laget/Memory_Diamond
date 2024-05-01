@@ -1,0 +1,93 @@
+#root {
+  padding: 0px;
+}
+.loading_menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loading__container {
+    max-width: 750px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .container__video {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .video {
+    width: 100%;
+    height: auto;
+  }
+  
+  .title__commentaire {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+  }
+  
+  .Progresse__barre {
+    margin-top: 20px;
+    height: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+  }
+  
+  .bouton__play {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .bouton__play:hover {
+    background-color: #0056b3;
+  }
+  
+  .button__container {
+    position: relative;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+
+  }
+  
+  .left {
+    left: 10px;
+    background-image: url('left-arrow.png'); /* Remplacez 'left-arrow.png' par le chemin de votre image de flèche gauche */
+  }
+  
+  .right {
+    right: 10px;
+    background-image: url('right-arrow.png'); /* Remplacez 'right-arrow.png' par le chemin de votre image de flèche droite */
+  }
+  
