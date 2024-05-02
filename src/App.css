@@ -4,7 +4,7 @@
   text-align: center;
 }
 body {
-  user-select: none;
+  /* user-select: none; */
 }
 .logo {
   height: 6em;

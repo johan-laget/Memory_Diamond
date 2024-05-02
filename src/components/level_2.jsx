@@ -1,7 +1,7 @@
 import React from 'react'; // Import Reactimport React from 'react'; // Import React
-import '../assets/dicta.css'; // Import the CSS file
+import '../assets/level2.css'; // Import the CSS file
 
-const Dicta = () => {
+const Level_2 = () => {
   return (
     <div className=''> 
           <header className=''>
@@ -19,4 +19,4 @@ const Dicta = () => {
   );
 };
 
-export default Dicta;
+export default Level_2;
