@@ -112,7 +112,7 @@ h1 {
   position: fixed;
   top: 0;
   left: 0;
-  gap: 19rem;
+  gap: 21rem;
   display: flex;
 }
 
@@ -122,15 +122,18 @@ h1 {
   cursor: pointer;
   border: black solid 1.5px;
   height: 32px;
+  position: relative;
 }
 
 .options-menu {
   background: radial-gradient(black, transparent);
-
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
+  display: grid;
   border: black solid 1.5px;
+  position: absolute;
+  top: 100%;
+  left: -1%;
+  width: 129px;
 }
 
 .options-menu button {

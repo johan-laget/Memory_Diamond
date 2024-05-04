@@ -35,14 +35,14 @@ const Level_1 = () => {
       <header className="header__lvl1">
         <div className={`options-button ${showBlock ? 'disabled' : ''}`} onClick={toggleOptions}>
           Option
-        </div>
         {showOptions && (
           <div className="options-menu">
             <button>Menu</button>
             <button>Config</button>
             <button>Son</button>
-          </div>
+            </div>
         )}
+        </div>
         <div className={`title__game_lvl1 ${showBlock ? 'non-clickable' : ''}`}>
           <p className='p__lvl1'>Level 1</p>
           <div className='container__divs'>
