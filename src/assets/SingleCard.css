@@ -1,0 +1,41 @@
+.back.matched {
+  animation: none; 
+}
+.card {
+  position: relative;
+  height: 5.7rem;
+  width: 4.2rem;
+}
+.card img {
+  display: block;
+  border: 2px solid white;
+  border-radius: 6px;
+}
+.card .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+  height: 5.5rem;
+  width: 4rem;
+}
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2;
+}
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+  height: 5.5rem;
+  width: 4rem;
+}
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+.background_level1 {
+  display: flex;
+  justify-content: center;
+  grid-gap: 141px;
+  margin-top: 186px;
+}
+

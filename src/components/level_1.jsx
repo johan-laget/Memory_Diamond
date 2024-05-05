@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/level1.css'; 
+import SingleCard from "./SingleCard";
 
 const Level_1 = () => {
   const [showBlock, setShowBlock] = useState(true);
@@ -29,7 +30,72 @@ const Level_1 = () => {
       setShowOptions(!showOptions);
     }
   };
-
+    const cardImages = [
+      { src: "/img/helmet-1.png" },
+      { src: "/img/potion-1.png" },
+      { src: "/img/ring-1.png" },
+      { src: "/img/scroll-1.png" },
+      { src: "/img/shield-1.png" },
+      { src: "/img/sword-1.png" },
+    ];
+  
+    //shuffle cards
+    const [cards, setCards] = useState([]);
+    const [turns, setTurns] = useState(0);
+    const [choiceOne, setChoiceOne] = useState(null);
+    const [choiceTwo, setChoiceTwo] = useState(null);
+    const [disabled, setDisabled] = useState(false);
+  
+    const shuffleCards = () => {
+      const shuffleCards = [...cardImages, ...cardImages]
+        .sort(() => Math.random() - 0.5)
+        .map((card) => ({ ...card, id: Math.random() }));
+      setChoiceOne(null);
+      setChoiceTwo(null);
+      setCards(shuffleCards);
+      setTurns(0);
+    };
+  
+    // handle a choise
+    const handleChoice = (card) => {
+      choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+    };
+  
+    //reset choices & increase turn
+    const resetTurn = () => {
+      setChoiceOne(null);
+      setChoiceTwo(null);
+      setTurns((prevTurns) => prevTurns + 1);
+      setDisabled(false);
+    };
+  
+    //compare choices
+    useEffect(() => {
+      if (choiceOne && choiceTwo) {
+        setDisabled(true);
+        if (choiceOne.src === choiceTwo.src) {
+          setCards((prevCards) => {
+            return prevCards.map((card) => {
+              if (card.src === choiceOne.src) {
+                return { ...card, matched: true };
+              } else {
+                return card;
+              }
+            });
+          });
+          resetTurn();
+        } else {
+          setTimeout(() => resetTurn(), 1000);
+        }
+      }
+    }, [choiceOne, choiceTwo]);
+  
+    //start a new game automatically
+    useEffect(() => {
+      shuffleCards();
+    }, []);
+  
+    console.log(cards);
   return (
     <div className="level-container__level1">
       <header className="header__lvl1">
@@ -47,12 +113,27 @@ const Level_1 = () => {
           <p className='p__lvl1'>Level 1</p>
           <div className='container__divs'>
             <div className="containes__lvl1">Timing:{timer}s</div>
-            <button className='containes__lvl2' onClick={resetGame}>Reset</button>
+            <button className='containes__lvl2' onClick={() => {resetGame(); shuffleCards();}}>Reset</button>
             <div className="containes__lvl1">Moves {moves}</div>
           </div>
         </div>
       </header>
-      
+      <div className="App">
+          <div className="background_level1">
+            <div className="statue_1"></div>
+            <div className="card-grid">
+              {cards.map((card) => (
+                <SingleCard
+                key={card.id}
+                card={card}
+                handleChoice={handleChoice}
+                flipped={card === choiceOne || card === choiceTwo || card.matched}
+                />
+              ))}
+            </div>
+              <div className="statue_2"></div>
+          </div>
+      </div>
       {showOverlay && <div className="content-overlay"></div>} 
 
       {showBlock && (
