@@ -165,9 +165,7 @@ h1 {
 }
 
 .containes__lvl1 {
-  font-size: 18px;
-  padding: 10px;
-  background-color: #1a1a1a;
+    border-radius: 8px;
 }
 
 .containes__lvl2 {
