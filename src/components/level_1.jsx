@@ -6,25 +6,30 @@ const Level_1 = () => {
   const [showBlock, setShowBlock] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-  const [timer, setTimer] = useState(0); // Déclarer l'état pour le timer
-  const [moves, setMoves] = useState(48); // Déclarer l'état pour le nombre de coups
-  const [gameWon, setGameWon] = useState(false);
+  const [timer, setTimer] = useState(0);
+  const [moves, setMoves] = useState(24);
   const [gameLost, setGameLost] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
+  const [intervalId, setIntervalId] = useState(null);
 
   const startGameHandler = () => {
     setShowBlock(false);
     setShowOverlay(true);
-    // Lancer le timer
-    const interval = setInterval(() => {
+    const id = setInterval(() => {
       setTimer(prevTimer => prevTimer + 1);
-    }, 1000); // Incrémenter le timer chaque seconde
-    // Nettoyer l'intervalle lorsque le composant est démonté ou lorsque le jeu est terminé
-    return () => clearInterval(interval);
+    }, 1000);
+    setIntervalId(id);
   };
 
   const resetGame = () => {
-    setTimer(0); // Réinitialiser le timer
-    setMoves(24); // Réinitialiser le nombre de coups
+    clearInterval(intervalId);
+    setTimer(0);
+    setMoves(24);
+    setGameLost(false);
+    setGameWon(false);
+    setIntervalId(null);
+    shuffleCards();
+    startGameHandler();
   };
 
   const toggleOptions = () => {
@@ -34,15 +39,14 @@ const Level_1 = () => {
   };
   
   const cardImages = [
-    { src: "/img/helmet-1.png" },
-    { src: "/img/potion-1.png" },
-    { src: "/img/ring-1.png" },
-    { src: "/img/scroll-1.png" },
-    { src: "/img/shield-1.png" },
-    { src: "/img/sword-1.png" },
+    { src: "../public/img/jhbjhgvuytv5647kuhviy6ubyu6uhv7vv.JPG" },
+    { src: "../public/img/c094af7e9752ddb9b2e59c7b9fbd9487.JPG" },
+    { src: "../public/img/a7bc5a2e189ee42e1389e8fc3c0aa1ad.JPG" },
+    { src: "../public/img/11e177d78d4184d5f17dd2b0c5321757.JPG" },
+    { src: "../public/img/59a6d64c0479ed22e4e856c035808f4e.JPG" },
+    { src: "../public/img/023e406d4c294be05d8c4d8206fadb90.JPG" },
   ];
 
-  //shuffle cards
   const [cards, setCards] = useState([]);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
@@ -56,23 +60,35 @@ const Level_1 = () => {
     setCards(shuffleCards);
   };
 
-  // Fonction pour gérer le choix de la carte
   const handleChoice = (card) => {
-    if (choiceOne && !choiceTwo) { // Vérifier s'il y a déjà une première carte retournée
-      setMoves(prevMoves => prevMoves - 1); // Décrémenter le nombre de coups
+    if (choiceOne && !choiceTwo) {
+      setMoves(prevMoves => prevMoves - 1);
       setChoiceTwo(card);
-    } else if (!choiceOne) { // S'il n'y a pas encore de première carte retournée
+    } else if (!choiceOne) {
       setChoiceOne(card);
     }
   };
 
-  //reset choices
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
   };
 
-  //compare choices
+  const checkWin = () => {
+    const pairsFound = cards.filter(card => card.matched).length / 2;
+    if (pairsFound === 6) {
+      clearInterval(intervalId);
+      setGameWon(true);
+    }
+  };
+
+  const checkLose = () => {
+    if (moves === 0 && !cards.every(card => card.matched)) {
+      clearInterval(intervalId);
+      setGameLost(true);
+    }
+  };
+
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
@@ -92,18 +108,62 @@ const Level_1 = () => {
     }
   }, [choiceOne, choiceTwo]);
 
-  // Vérifier si le joueur a gagné ou perdu
   useEffect(() => {
-    if (cards.every(card => card.matched)) {
-      setGameWon(true); // Définir l'état du jeu comme gagné
-    } else if (moves === 0) {
-      setGameLost(true); // Définir l'état du jeu comme perdu
-    }
-  }, [moves, cards]);
+    checkWin();
+  }, [cards]);
+
+  useEffect(() => {
+    checkLose();
+  }, [moves]);
 
   useEffect(() => {
     shuffleCards();
   }, []);
+
+  // Fonction pour le composant "Perdu"
+  const GameOverComponent = () => {
+    return (
+      <div className={`launch-block__level2 ${showBlock ? 'non-clickable' : ''}`}>
+        <h1 className='rainbow-text__level2'>Perdu</h1>
+        <div className="records__level1">
+        <div className="max-moves__level1">Nombre de paires trouvées: {cards.filter(card => card.matched).length / 2}/6</div>
+          <div>Temps écoulé: {timer} secondes</div>
+          <div>Nombre de coups faits: {24 - moves}</div>
+        </div>
+        <div className="records__level2">
+          <div>Records:</div>
+          <div>0h|0m|0s / 0/10</div>
+          <div>Nombre de paires trouvées</div>
+        </div>
+        <div className='launch__menu__lvl1'>
+          <button className="start-button__level1" onClick={resetGame}>Rejouer</button>
+          <button className="start-button__level1">Classement</button>
+          <button className="start-button__level1">Home</button>
+        </div>
+      </div>
+    );
+  };
+
+  // Fonction pour le composant "Gagné"
+  const VictoryComponent = () => {
+    return (
+      <div className={`launch-block__level2 ${showBlock ? 'non-clickable' : ''}`}>
+        <h1 className='rainbow-text__level2'>Gagné</h1>
+        <div className="max-moves__level1">Nombre de paires trouvées: {cards.filter(card => card.matched).length / 2}/6</div>
+        <div className="records__level1">Temps écoulé: {timer} secondes</div>
+        <div className="records__level2">
+          <div>Records:</div>
+          <div>0h|0m|0s / 0/10</div>
+          <div>Score</div>
+        </div>
+        <div className='launch__menu__lvl1'>
+          <button className="start-button__level1" onClick={resetGame}>Rejouer</button>
+          <button className="start-button__level1">Classement</button>
+          <button className="start-button__level1">Home</button>
+        </div>  
+      </div>
+    );
+  };
 
   return (
     <div className="level-container__level1">
@@ -122,7 +182,7 @@ const Level_1 = () => {
           <p className='p__lvl1'>Level 1</p>
           <div className='container__divs'>
             <div className="containes__lvl1">Timer:{timer}s</div>
-            <button className='containes__lvl2' onClick={() => {resetGame(); shuffleCards();}}>Reset</button>
+            <button className='containes__lvl2' onClick={() => {resetGame();}}>Reset</button>
             <div className="containes__lvl1">Moves {moves}</div>
           </div>
         </div>
@@ -143,7 +203,6 @@ const Level_1 = () => {
           <div className="statue_2"></div>
         </div>
       </div>
-      {showOverlay && <div className="content-overlay"></div>} 
 
       {showBlock && (
         <div className="launch-block__level1">
@@ -151,70 +210,18 @@ const Level_1 = () => {
           <div className="max-moves__level1">Nombre de coups maximum: 24</div>
           <div className="records__level1">Records: 0h|0m|0s / 0/10</div>
           <div className='launch__menu__lvl1'>
-            <button className="start-button__level1" onClick={startGameHandler}>
-              Start
-            </button>
-            <button className="start-button__level1" >
-              Classement
-            </button>
-            <button className="start-button__level1" >
-              Home
-            </button>
-          </div>
-        </div>
-      )} 
-          
-      {/* {gameWon && (
-        <div className="launch-block__level2">
-          <h1 className='rainbow-text__level2'>Gagné</h1>
-          <div className="max-moves__level1">Nombre de coups faits: {24 - moves}/24</div>
-          <div className="records__level1">Temps écoulé: {timer} secondes</div>
-          <div className="records__level2">
-            <div>Records:</div>
-            <div>0h|0m|0s / 0/10</div>
-            <div>Nombre de coups faits: {24 - moves}</div>
-            <div>Score</div>
-          </div>
-          <div className='launch__menu__lvl1'>
-            <button className="start-button__level1" onClick={() => {resetGame(); shuffleCards();}}>
-              Rejouer
-            </button>
-            <button className="start-button__level1" >
-              Classement
-            </button>
-            <button className="start-button__level1" >
-              Home
-            </button>
-          </div>
-        </div>
-      )} */}
-      
-      {gameLost && (
-        <div className="launch-block__level2">
-          <h1 className='rainbow-text__level2'>Perdu</h1>
-          <div className="max-moves__level1">Nombre de coups faits: {24 - moves}/24</div>
-          <div className="records__level1">Temps écoulé: {timer} secondes</div>
-          <div className="records__level2">
-            <div>Records:</div>
-            <div>0h|0m|0s / 0/10</div>
-            <div>Nombre de coups faits: {24 - moves}</div>
-          </div>
-          <div className='launch__menu__lvl1'>
-            <button className="start-button__level1" onClick={() => {resetGame(); shuffleCards();}}>
-              Rejouer
-            </button>
-            <button className="start-button__level1" >
-              Classement
-            </button>
-            <button className="start-button__level1" >
-              Home
-            </button>
+            <button className="start-button__level1" onClick={startGameHandler}>Start</button>
+            <button className="start-button__level1">Classement</button>
+            <button className="start-button__level1">Home</button>
           </div>
         </div>
       )}
+
+      {gameLost && <GameOverComponent />}
+
+      {gameWon && <VictoryComponent />}
     </div>
   );
 };
 
 export default Level_1;
-

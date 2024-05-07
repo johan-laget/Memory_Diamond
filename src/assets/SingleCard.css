@@ -3,20 +3,20 @@
 }
 .card {
   position: relative;
-  height: 5.7rem;
-  width: 4.2rem;
+  height: 7.6rem;
 }
 .card img {
   display: block;
-  border: 2px solid white;
+  border: 2px solid #4a3c26;
   border-radius: 6px;
 }
 .card .front {
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
   position: absolute;
-  height: 5.5rem;
-  width: 4rem;
+  height: 7.3rem;
+  width: 5.2rem;
+
 }
 .flipped .front {
   transform: rotateY(0deg);
@@ -25,8 +25,9 @@
 .card .back {
   transition: all ease-in 0.2s;
   transition-delay: 0.2s;
-  height: 5.5rem;
-  width: 4rem;
+  height: 7.3rem;
+  width: 5.2rem;
+
 }
 .flipped .back {
   transform: rotateY(90deg);
