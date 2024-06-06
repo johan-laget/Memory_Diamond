@@ -1,5 +1,6 @@
 import React from 'react'; // Import React
 import '../assets/form.css'; // Import the CSS file
+import { Link } from 'react-router-dom';
 
 const Form = () => {
   return (
@@ -21,7 +22,7 @@ const Form = () => {
           <ul>
           <li className='imput__li'><input className='imput__form' type="email__form" placeholder="Email" /></li>
           <li style={{ marginBottom: "5px" }} className='imput__li'><input className='imput__form' type="password__form" placeholder="Password" /></li>
-            <li className='button__form'><button>Login</button></li>
+            <Link to={"/root/game"} className='button__form'><button>Login</button></Link>
           </ul>
         </div>
       </div>

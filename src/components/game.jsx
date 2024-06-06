@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../assets/level1.css'; 
 import SingleCard from "./SingleCard";
 
-const Level_1 = () => {
+const Game = () => {
   const [showBlock, setShowBlock] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
@@ -224,4 +224,4 @@ const Level_1 = () => {
   );
 };
 
-export default Level_1;
+export default Game;

@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import '../assets/loading.css';
 
 const Loading = () => {
@@ -50,7 +50,7 @@ const Loading = () => {
           <div className='progress-bar' style={{ width: `${progress}%` }}>{Math.round(progress)}%</div>
         </div>
       </div>
-        {showButton && <div id='BoutonMusic' className='bouton__play'>Continuer</div>}
+      {showButton && <Link to="root/form" id='BoutonMusic' className='bouton__play'>Continuer</Link>}
     </div>
   );
 };

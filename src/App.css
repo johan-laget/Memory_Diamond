@@ -8,11 +8,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat; 
   height: 100vh;
-
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer */
-  user-select: none; /* Standard */
+/* 
+  -webkit-user-select: none;
+  -moz-user-select: none; 
+  -ms-user-select: none;
+  user-select: none;
+   */
 }
 .logo {
   height: 6em;
