@@ -13,7 +13,7 @@ const Form = () => {
             <li className='imput__li'><input className='imput__form' type="pseudo__form" placeholder="Pseudo" /></li>
             <li className='imput__li'><input className='imput__form' type="email__form" placeholder="Email" /></li>
             <li style={{ marginBottom: "5px" }} className='imput__li'><input className='imput__form' type="password__form" placeholder="Password" /></li>
-            <li className='button__form'><button >Create</button></li>
+           <Link to={"/root/game"} className='button__form'><button>Create</button></Link>
           </ul>
         </div>
         <p>Or</p>
